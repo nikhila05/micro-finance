@@ -57,19 +57,13 @@ MIDDLEWARE = MIDDLEWARE + [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     # ...
 ]
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {'default': dj_database_url.config()}
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'mfi',
-            'USER': 'postgres',
-            'PASSWORD': 'root',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
